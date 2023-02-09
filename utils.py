@@ -1,0 +1,56 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+import warnings
+import random
+# random.seed(42)
+# warnings.filterwarnings('ignore')
+
+
+def run_sequence_plot (x, y, title ,  mean_line = False, xlabel="time", ylabel="series"):
+    """
+    A function that plots a line plot for the given values
+    parameters:
+        x : Values to be plot in x a-xis
+        y : values to plot on y-axis( must be same length to parameter x )
+        title : Title  of the plot
+        xlabel : Xlabel of the plot
+        ylabel: Ylabel of the plot
+    returns: y
+        Line plot
+    """
+    plt.figure(figsize =(10 ,7))
+    plt.plot(x, y, 'k-', label = ylabel)
+    if(mean_line  == True):
+        plt.axhline(y=np.nanmean(y), color = "red", label = f'mean(= {np.nanmean(y):.2f} )')
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.xticks(rotation=45 , rotation_mode='anchor', ha ='right' )
+    plt.ylabel(ylabel)
+    plt.legend()
+    plt.grid(alpha=0.3)
+    plt.show();
+
+def eval_metrics(actual_val, predicted_val):
+    """
+    Returns the MSE, MAE and RMSE Error for the given values
+    Parameters:
+    * actual_val    : The actual value of the data
+    * predicted_val : The predicted value of the data
+    returns:
+    errors<Tuple> : A tuple of MSE MAE and RMSE score for the data (MSE, MAE, RMSE)
+    """
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    import plotly.express as px
+    import warnings
+    import random
+    mse     = (np.square(actual_val - predicted_val)).mean()
+    mae     = (np.abs(actual_val - predicted_val)).mean()
+    rmse    = np.sqrt(mse)
+    errors  = (mse,mae,rmse)
+    return errors
