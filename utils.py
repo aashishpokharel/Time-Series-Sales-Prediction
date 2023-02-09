@@ -54,3 +54,9 @@ def eval_metrics(actual_val, predicted_val):
     rmse    = np.sqrt(mse)
     errors  = (mse,mae,rmse)
     return errors
+
+def print_eval_metrics(actual_val, predicted_val):
+    mse,mae,rmse = eval_metrics(actual_val, predicted_val)
+    print(f"\n The Mean Squared Error : {mse}")
+    print(f"\nThe Mean Absolute Error : {mae}")
+    print(f"\nThe Root Mean Squared Error : {mse}")
