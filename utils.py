@@ -60,3 +60,24 @@ def print_eval_metrics(actual_val, predicted_val):
     print(f"\n The Mean Squared Error : {mse}")
     print(f"\nThe Mean Absolute Error : {mae}")
     print(f"\nThe Root Mean Squared Error : {mse}")
+
+def auto_model():
+    model_autoARIMA = auto_arima(first_store_open["Sales"], start_p=0, start_q=0,
+    test='adf',
+    # use adftest to find osales_combined.Sales - sales_combined.predptimal 'd'
+    max_p=3, max_q=3, # maximum p and q
+    m=1,
+    # frequency of series
+    d=None,
+    # let model determine 'd'
+    seasonal=False,
+    # No Seasonality
+    start_P=0,
+    D=0,
+    trace=True,
+    error_action='ignore',
+    suppress_warnings=True,
+    stepwise=True)
+    print(model_autoARIMA.summary())
+    model_autoARIMA.plot_diagnostics(figsize=(15,8))
+    plt.show()
